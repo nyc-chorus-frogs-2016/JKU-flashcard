@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="/css/application.css">
+<link rel="stylesheet" href="/css/normalize.css">
+
+  <% if logged_in? %>
+    <% if authroized_player(@round.id) %>
+      <%= @card.question %>
+      <% if @result %>
+        <% if @result == "correct" %>
+          <h1> Answer: </h1>
+          <form action="/rounds/<%=@round.id%>/cards/<%=@card.id%>" method = "post">
+            <input type='text' name ='answer' value ="<%=@card.answer%>"/>
+          </form>
+        <h1>Correct!</h1>
+        <% else %>
+          <h1> Answer: </h1>
+          <form action="/rounds/<%=@round.id%>/cards/<%=@card.id%>" method = "post">
+            <input type='text' name ='answer' value ="<%=@previous_answer%>"/>
+          </form>
+          <h1>Incorrect! The correct answer is '<%=@card.answer%>'</h1>
+        <% end %>
+      <% else %>
+        <% if answered_correctly(@round.id,@card.id) %>
+          <h1> Answer: </h1>
+          <form action="/rounds/<%=@round.id%>/cards/<%=@card.id%>" method = "post">
+            <input type='text' name ='answer' value ="<%=@card.answer%>"/>
+          </form>
+          <h1>Correct!</h1>
+        <% else %>
+          <h1> Answer: </h1>
+          <form action="/rounds/<%=@round.id%>/cards/<%=@card.id%>" method = "post">
+            <input type='text' name ='answer'/>
+            <input type = 'submit' value = 'submit answer'/>
+          </form>
+        <% end %>
+      <% end %>
+
+      <% if @round.finished_deck %>
+        <h1>Congrats you have finished the round. Below are the stats for this round:</h1>
+        <p>Total Cards: <%=@round.deck.cards.count%></p>
+        <p>Total Correct Guesses:<%=@round.count_correct_guesses%></p>
+        <p>Total Correct Guesses on First try:<%=@round.count_correct_first_guesses%></p>
+        <p>Total Guesses Attempted: <%=@round.total_guesses%></p>
+      <% else %>
+          <a href="/rounds/<%=@round.id%>/">next question</a>
+      <% end %>
+    <% else %>
+      <h1>401: You are not authorized to acccess this card.</h1>
+    <% end %>
+    <% else %>
+    <h1>Please login/register to access this card.</h1>
+  <% end %>

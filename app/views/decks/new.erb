@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="/css/application.css">
+<link rel="stylesheet" href="/css/normalize.css">
+
+<%if logged_in? %>
+
+<form action="/decks" method = "post">
+    <h1> Name Your Deck </h1>
+    <input type='text' name ='name'/>
+    <input type = 'submit' value = 'Create'/>
+</form>
+
+<div>
+<% if @errors %>
+<h6>Deck Name Can't Be Blank!<h6>
+<% end %>
+</div>
+
+<%elsif %>
+  <h1>Please Login or register to create your own deck</h1>
+<%end %>

@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="/css/application.css">
+<link rel="stylesheet" href="/css/normalize.css">
+
+<h2> Welcome to the <b> REAL </b> islandfrogs! </h2>
+
+<h1>Public Decks</h1>
+<div>
+<% @decks.select {|deck| deck.user_id == nil }.each do |deck|%>
+<a href="/decks/<%= deck.id%>"><%= deck.name %></a>
+<h1></h1>
+<% end %>
+</div>
+
+<h1>Your Customized Decks:</h1>
+<%if logged_in? %>
+<div>
+<% @decks.select {|deck| deck.user_id == current_user.id }.each do |deck|%>
+<a href="/decks/<%= deck.id%>"><%= deck.name %></a>
+<h1></h1>
+<% end %>
+</div>
+<%end%>
+
+<a href="/decks/new">Create Your Own Deck</a>

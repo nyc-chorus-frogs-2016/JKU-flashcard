@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/css/application.css">
+<link rel="stylesheet" href="/css/normalize.css">
+
+<%if logged_in? && @deck.user_id == current_user.id %>
+  <h1> Create a card for your <%=@deck.name%> deck</h1>
+  <form action="/decks/<%=@deck.id%>/cards/new" method = "post">
+      <h1>Question</h1>
+      <input type='text' name ='question'/>
+      <h1>Answer</h1>
+      <input type='text' name ='answer'/>
+      <input type = 'submit' value = 'Create card'/>
+  </form>
+
+  <% if @errors %>
+    <%=@errors%>
+  <% end %>
+
+  <h1> Current cards included in this Deck:</h1>
+  <% @deck.cards.each do |card| %>
+    <h1><%= card.question%></h1>
+    <%= card.answer%>
+  <% end %>
+
+<%elsif logged_in? %>
+  <h1>401: You are not authorized to create a card for this deck.</h1>
+
+<%else %>
+  <h1>Please Login or register to create your own card</h1>
+
+<%end %>

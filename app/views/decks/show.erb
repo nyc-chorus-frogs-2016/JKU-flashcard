@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="/css/application.css">
+<link rel="stylesheet" href="/css/normalize.css">
+
+
+
+<% if logged_in? && (@deck.user_id == current_user.id || @deck.user_id == nil) %>
+<h1> <%= @deck.name %> </h1>
+<h3> There are <%= @deck.cards.count %> cards </h3>
+<h4><% @deck.cards.each do |card|%>
+  <%if @deck.user_id == nil %>
+    <h6><%=card.question%></h6>
+  <%elsif logged_in? && @deck.user_id == current_user.id %>
+    <h6><a href="/cards/<%=card.id%>/edit"><%=card.question%></a></h6>
+  <%end%>
+<% end%></h4>
+
+<% if logged_in? && @deck.user_id == current_user.id %>
+
+  <%if @deck.user_id == current_user.id && @deck.cards.count > 0%>
+  <h4> Click on a question to edit or delete</h4>
+  <a href="/decks/<%=@deck.id%>}/cards/new">Click here to add a card to this deck</a>
+  <%elsif @deck.user_id == current_user.id && @deck.cards.count == 0%>
+  <a href="/decks/<%=@deck.id%>}/cards/new">Click here to add a card to this deck</a>
+  <%end%>
+
+  <form action="/decks/<%=@deck.id%>" method = "post">
+    <input type="hidden" name="_method" value="delete">
+      <input type = 'submit' value = 'Delete Deck'/>
+  </form>
+
+<%end%>
+<%end%>
+
+
+<% if logged_in? && (@deck.user_id == current_user.id || @deck.user_id == nil) %>
+<form action="/decks/<%=@deck.id%>" method = "post">
+  <% if @deck.cards.count > 0 %>
+  <input type = 'submit' value = 'Play Now'/>
+  <% end %>
+</form>
+<% else %>
+
+  <% if logged_in? %>
+  <h1>401: You are not authorized to access this deck.</h1>
+  <% else %>
+  <h1>Please login/register to play.</h1>
+  <% end %>
+
+<% end %>
+

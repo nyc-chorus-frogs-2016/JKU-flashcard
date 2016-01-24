@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    normalize.css removes cross-browser differences in defaults, e.g.,
+    differences in how form elements appear between Firefox and IE
+    See: http://necolas.github.com/normalize.css/
+  -->
+  <link rel="stylesheet" href="/css/normalize.css">
+  <!--
+    application.css is where you put your styles
+  -->
+  <link rel="stylesheet" href="/css/application.css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/js/application.js"></script>
+
+  <title></title>
+</head>
+<body>
+  <% if @error %>
+  <%= @error %>
+  <% end %>
+
+    <a href="/">Home</a>
+  <% if logged_in? %>
+    Hello <%=current_user.first_name%>
+    <form action='/sessions/logout' method = 'post'>
+      <input type='hidden' name='_method' value='delete'/>
+      <input type='submit' value='logout'/>
+    </form>
+    <a href="/userprofile">Your Profile</a>
+  <% else %>
+<form id = 'right' action="/sessions" method = "post">
+  <ul>
+    <h1> Log in </h1>
+    <li><input id = 'inline' type='text' name ='email' placeholder ='E-mail'/></li>
+    <li><input id = 'inline' type='password' name ='password' placeholder ='Password'/></li>
+  </ul>
+  <input type = 'submit' value = 'log in'/>
+</form>
+<a id = 'righter' href="/users/new">First time here? Sign Up</a>
+  <% end %>
+  <%= yield %>
+</body>
+</html>

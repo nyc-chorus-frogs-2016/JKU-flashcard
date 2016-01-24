@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="/css/application.css">
+<link rel="stylesheet" href="/css/normalize.css">
+
+
+
+<form action="/users" method = "post">
+    <h2> Register </h2>
+    <div id = "container">
+    <input id = 'in' type='text' name ='first_name' placeholder ='First Name'/>
+    <input id = 'in' type='text' name ='last_name' placeholder ='Last Name'/>
+    <input id = 'in' type='text' name ='email' placeholder ='E-mail'/>
+    <input id = 'in' type='password' name ='password' placeholder ='Password'/>
+
+    <input class="button-primary" input type = 'submit' value = 'Register'/>
+    <% if @errors %>
+<% @errors.each do |error| %>
+<h6><%=error%></h6>
+<% end %>
+<% end %>
+  </div>
+</form>
+
+
