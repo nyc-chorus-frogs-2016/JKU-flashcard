@@ -32,12 +32,9 @@
     <a href="/userprofile">Your Profile</a>
   <% else %>
 <form id = 'right' action="/sessions" method = "post">
-  <ul>
-    <h1> Log in </h1>
-    <li><input id = 'inline' type='text' name ='email' placeholder ='E-mail'/></li>
-    <li><input id = 'inline' type='password' name ='password' placeholder ='Password'/></li>
-  </ul>
-  <input type = 'submit' value = 'log in'/>
+    <input id = 'inline' type='text' name ='email' placeholder ='E-mail'/>
+    <input id = 'inline' type='password' name ='password' placeholder ='Password'/>
+  <input class="button-primary" type = 'submit' value = 'log in'/>
 </form>
 <a id = 'righter' href="/users/new">First time here? Sign Up</a>
   <% end %>

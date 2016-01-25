@@ -6,15 +6,21 @@
   <form action="/cards/<%=@card.id%>" method = "post">
     <input type="hidden" name="_method" value="put">
       <h1>Question</h1>
-      <input type='text' name ='question' value="<%= @card.question%>"/>
+      <div id = "container">  
+      <input class="button-primary" type='text' name ='question' value="<%= @card.question%>"/>
+    </div>
       <h1>Answer</h1>
+      <div id = "container">  
       <input type='text' name ='answer' value="<%= @card.answer%>"/>
-      <input type = 'submit' value = 'update card'/>
+      <input class="button-primary" type = 'submit' value = 'update card'/>
+    </div>
   </form>
 
   <form action="/cards/<%=@card.id%>" method = "post">
+    <div id = "container">  
     <input type="hidden" name="_method" value="delete">
-      <input type = 'submit' value = 'Delete Card'/>
+      <input class="button-primary" type = 'submit' value = 'Delete Card'/>
+    </div>
   </form>
 
 <%elsif logged_in? %>

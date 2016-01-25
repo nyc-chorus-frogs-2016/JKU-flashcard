@@ -4,21 +4,24 @@
 <h2> Welcome to the <b> REAL </b> islandfrogs! </h2>
 
 <h1>Public Decks</h1>
-<div>
+<div class = "center-link">
 <% @decks.select {|deck| deck.user_id == nil }.each do |deck|%>
 <a href="/decks/<%= deck.id%>"><%= deck.name %></a>
 <h1></h1>
 <% end %>
 </div>
 
-<h1>Your Customized Decks:</h1>
+<h1>Your Customized Decks</h1>
+<div class = "center-link">
 <%if logged_in? %>
-<div>
+<div class = "center-link">
 <% @decks.select {|deck| deck.user_id == current_user.id }.each do |deck|%>
 <a href="/decks/<%= deck.id%>"><%= deck.name %></a>
-<h1></h1>
+</div>
 <% end %>
 </div>
 <%end%>
 
-<a href="/decks/new">Create Your Own Deck</a>
+<div class = "center-link">
+<b><a href="/decks/new">Create Your Own Deck</a></b>
+</div>

@@ -18,14 +18,20 @@
 
   <%if @deck.user_id == current_user.id && @deck.cards.count > 0%>
   <h4> Click on a question to edit or delete</h4>
+  <div class = "center-link">
   <a href="/decks/<%=@deck.id%>}/cards/new">Click here to add a card to this deck</a>
+  </div>
   <%elsif @deck.user_id == current_user.id && @deck.cards.count == 0%>
+  <div class = "center-link">
   <a href="/decks/<%=@deck.id%>}/cards/new">Click here to add a card to this deck</a>
+  </div>
   <%end%>
 
   <form action="/decks/<%=@deck.id%>" method = "post">
+    <div id = "container">  
     <input type="hidden" name="_method" value="delete">
-      <input type = 'submit' value = 'Delete Deck'/>
+      <input class="button-primary" type = 'submit' value = 'Delete Deck'/>
+    </div>
   </form>
 
 <%end%>
@@ -35,7 +41,9 @@
 <% if logged_in? && (@deck.user_id == current_user.id || @deck.user_id == nil) %>
 <form action="/decks/<%=@deck.id%>" method = "post">
   <% if @deck.cards.count > 0 %>
-  <input type = 'submit' value = 'Play Now'/>
+    <div id = "container">  
+    <input class="button-primary" type = 'submit' value = 'Play Now'/>
+    </div>
   <% end %>
 </form>
 <% else %>
