@@ -1,5 +1,9 @@
 get '/users/new' do
-  erb :'users/new', layout: false
+  if params[:errors]
+    @errors = params[:errors]
+    binding.pry
+  end
+  erb :'users/new'
 end
 
 post '/users' do

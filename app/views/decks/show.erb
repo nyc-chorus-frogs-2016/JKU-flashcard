@@ -4,8 +4,8 @@
 
 
 <% if logged_in? && (@deck.user_id == current_user.id || @deck.user_id == nil) %>
-<h1> <%= @deck.name %> </h1>
-<h3> There are <%= @deck.cards.count %> cards </h3>
+<h1><b> <%= @deck.name %> </b></h1>
+<h6> There are <%= @deck.cards.count %> cards (click to edit/delete): </h6>
 <h4><% @deck.cards.each do |card|%>
   <%if @deck.user_id == nil %>
     <h6><%=card.question%></h6>
@@ -15,20 +15,19 @@
 <% end%></h4>
 
 <% if logged_in? && @deck.user_id == current_user.id %>
-
+<h1></h1>
   <%if @deck.user_id == current_user.id && @deck.cards.count > 0%>
-  <h4> Click on a question to edit or delete</h4>
   <div class = "center-link">
-  <a href="/decks/<%=@deck.id%>}/cards/new">Click here to add a card to this deck</a>
+  <a href="/decks/<%=@deck.id%>}/cards/new">Add cards to this deck+</a>
   </div>
   <%elsif @deck.user_id == current_user.id && @deck.cards.count == 0%>
   <div class = "center-link">
   <a href="/decks/<%=@deck.id%>}/cards/new">Click here to add a card to this deck</a>
   </div>
   <%end%>
-
+<h1></h1>
   <form action="/decks/<%=@deck.id%>" method = "post">
-    <div id = "container">  
+    <div id = "container">
     <input type="hidden" name="_method" value="delete">
       <input class="button-primary" type = 'submit' value = 'Delete Deck'/>
     </div>
@@ -37,11 +36,11 @@
 <%end%>
 <%end%>
 
-
+<h1></h1>
 <% if logged_in? && (@deck.user_id == current_user.id || @deck.user_id == nil) %>
 <form action="/decks/<%=@deck.id%>" method = "post">
   <% if @deck.cards.count > 0 %>
-    <div id = "container">  
+    <div id = "container">
     <input class="button-primary" type = 'submit' value = 'Play Now'/>
     </div>
   <% end %>
@@ -49,9 +48,9 @@
 <% else %>
 
   <% if logged_in? %>
-  <h1>401: You are not authorized to access this deck.</h1>
+  <h2 id = "error">401: You are not authorized to access this deck.</h2>
   <% else %>
-  <h1>Please login/register to play.</h1>
+  <h2 id = "error">Please login/register to play.</h2>
   <% end %>
 
 <% end %>

@@ -3,9 +3,9 @@
 
 <%if logged_in? %>
 
-<h1>Your completed rounds:</h1>
+<h4><u>Your completed rounds:</u><h4>
 <% current_user.rounds.select {|round| round.finished_deck }.each do |round| %>
-  <h1><%= round.deck.name %></h1>
+  <h5><b><%= round.deck.name %></b></h5>
   <p>Started at <%= round.created_at %></p>
   <p>Total Cards: <%=round.deck.cards.count%></p>
   <p>Total Correct Guesses:<%=round.count_correct_guesses%></p>
@@ -13,16 +13,16 @@
   <p>Total Guesses Attempted: <%=round.total_guesses%></p>
 <% end%>
 
-<h1>Your Outstanding rounds:</h1>
+<h4><u>Your Outstanding rounds:</u><h4>
 <% current_user.rounds.select {|round| round.finished_deck == false }.each do |round| %>
-  <h1><%= round.deck.name %></h1>
+   <h5><b><%= round.deck.name %></b></h5>>
   <p>Started at <%= round.created_at %></p>
   <p>Total Cards: <%=round.deck.cards.count%></p>
   <p>Total Correct Guesses:<%=round.count_correct_guesses%></p>
   <p>Total Correct Guesses on First try:<%=round.count_correct_first_guesses%></p>
   <p>Total Guesses Attempted: <%=round.total_guesses%></p>
     <form method="post" action="/rounds/<%= round.id %>/">
-      <div id = "container">  
+      <div id = "container">
       <input type="hidden" name="_method" value="delete">
       <input class="button" type="submit" value="delete">
     </div>
@@ -33,5 +33,5 @@
 <% end%>
 
 <%else %>
-<h1>Please login/register to view your profile.</h1>
+<h2 id = "error">Please login/register to view your profile.</h2>
 <% end %>

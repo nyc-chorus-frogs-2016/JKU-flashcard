@@ -6,8 +6,9 @@
 <form action="/decks" method = "post">
     <h1> Name Your Deck </h1>
     <input id = 'in' type='text' name ='name'/>
+    <h1></h1>
     <div id = "container">
-    <input class="button-primary" type = 'submit' value = 'Create'/>
+    <input type = 'submit' value = 'Create'/>
 	</div>
 </form>
 
@@ -18,5 +19,5 @@
 </div>
 
 <%elsif %>
-  <h1>Please Login or register to create your own deck</h1>
+  <h2 id = "error">Please login/register to create your own deck.</h2>
 <%end %>

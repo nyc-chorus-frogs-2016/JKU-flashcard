@@ -2,12 +2,13 @@
 <link rel="stylesheet" href="/css/normalize.css">
 
 <%if logged_in? && @deck.user_id == current_user.id %>
-  <h1> Create a card for your <%=@deck.name%> deck</h1>
+  <h1> Create a card for your <u>'<%=@deck.name%>'</u> deck</h1>
   <form action="/decks/<%=@deck.id%>/cards/new" method = "post">
-      <h1>Question</h1>
+      <h3><u>Question:<u></h3>
       <input type='text' name ='question'/>
-      <h1>Answer</h1>
+      <h3><u>Answer:<u></h3>
       <input type='text' name ='answer'/>
+      <h1></h1>
     <div id = "container">
       <input class="button-primary" type = 'submit' value = 'Create card'/>
     </div>
@@ -16,17 +17,16 @@
   <% if @errors %>
     <%=@errors%>
   <% end %>
-
-  <h1> Current cards included in this Deck:</h1>
+<h1></h1>
+  <h5>Current cards included in this Deck:</h5>
   <% @deck.cards.each do |card| %>
-    <h1><%= card.question%></h1>
-    <%= card.answer%>
+    <h5><%= card.question%>: <%= card.answer%></h5>
   <% end %>
 
 <%elsif logged_in? %>
-  <h1>401: You are not authorized to create a card for this deck.</h1>
+  <h2 id = "error">401: You are not authorized to create a card for this deck.</h2>
 
 <%else %>
-  <h1>Please Login or register to create your own card</h1>
+  <h2 id = "error">Please login/register to create your own card.</h2>
 
 <%end %>

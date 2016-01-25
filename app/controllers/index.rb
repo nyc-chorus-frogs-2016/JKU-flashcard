@@ -1,6 +1,6 @@
 get '/' do
   if params[:error]
-    @error = "wrong credentials"
+    @error = "Wrong E-mail/Password!"
   end
 
   @decks = Deck.all

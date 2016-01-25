@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="/css/application.css">
 <link rel="stylesheet" href="/css/normalize.css">
 
-<h2> Welcome to the <b> REAL </b> islandfrogs! </h2>
+<h2> The <b> REAL </b> islandfrogs Flash Cards </h2>
 
-<h1>Public Decks</h1>
+<h5><u>Public Decks:</u></h5>
 <div class = "center-link">
 <% @decks.select {|deck| deck.user_id == nil }.each do |deck|%>
 <a href="/decks/<%= deck.id%>"><%= deck.name %></a>
@@ -11,7 +11,7 @@
 <% end %>
 </div>
 
-<h1>Your Customized Decks</h1>
+<h5><u>Your Own Decks:</u></h5>
 <div class = "center-link">
 <%if logged_in? %>
 <div class = "center-link">
@@ -21,7 +21,7 @@
 <% end %>
 </div>
 <%end%>
-
+<h1></h1>
 <div class = "center-link">
-<b><a href="/decks/new">Create Your Own Deck</a></b>
+<b><a href="/decks/new">Create+</a></b>
 </div>

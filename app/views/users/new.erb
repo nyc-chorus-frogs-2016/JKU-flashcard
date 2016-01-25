@@ -5,20 +5,22 @@
 
 <form action="/users" method = "post">
     <h2> Register </h2>
-    
+
     <input id = 'in' type='text' name ='first_name' placeholder ='First Name'/>
     <input id = 'in' type='text' name ='last_name' placeholder ='Last Name'/>
     <input id = 'in' type='text' name ='email' placeholder ='E-mail'/>
     <input id = 'in' type='password' name ='password' placeholder ='Password'/>
-	<div id = "container">	
+	<div id = "container">
+    <h1></h1>
     <input class="button-primary" input type = 'submit' value = 'Register'/>
     </div>
+    <h1></h1>
     <% if @errors %>
 <% @errors.each do |error| %>
 <h6><%=error%></h6>
 <% end %>
 <% end %>
-  
+
 </form>
 
 

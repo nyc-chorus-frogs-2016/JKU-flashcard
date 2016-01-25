@@ -18,18 +18,13 @@
   <title></title>
 </head>
 <body>
-  <% if @error %>
-  <%= @error %>
-  <% end %>
-
     <a href="/">Home</a>
   <% if logged_in? %>
-    Hello <%=current_user.first_name%>
+    <a id = 'righter' href="/userprofile">Hello <%=current_user.first_name%></a>
     <form action='/sessions/logout' method = 'post'>
       <input type='hidden' name='_method' value='delete'/>
-      <input type='submit' value='logout'/>
+      <input id = 'right' type='submit' value='logout'/>
     </form>
-    <a href="/userprofile">Your Profile</a>
   <% else %>
 <form id = 'right' action="/sessions" method = "post">
     <input id = 'inline' type='text' name ='email' placeholder ='E-mail'/>
@@ -37,6 +32,9 @@
   <input class="button-primary" type = 'submit' value = 'log in'/>
 </form>
 <a id = 'righter' href="/users/new">First time here? Sign Up</a>
+  <% if @error %>
+  <h6 id = 'wrongcredentials'><%= @error %><h6>
+  <% end %>
   <% end %>
   <%= yield %>
 </body>
