@@ -8,13 +8,13 @@
         <% if @result == "correct" %>
           <h1> Answer: </h1>
           <form action="/rounds/<%=@round.id%>/cards/<%=@card.id%>" method = "post">
-            <input type='text' name ='answer' value ="<%=@card.answer%>"/>
+            <input class="button" type='text' name ='answer' value ="<%=@card.answer%>"/>
           </form>
         <h1>Correct!</h1>
         <% else %>
           <h1> Answer: </h1>
           <form action="/rounds/<%=@round.id%>/cards/<%=@card.id%>" method = "post">
-            <input type='text' name ='answer' value ="<%=@previous_answer%>"/>
+            <input class="button" type='text' name ='answer' value ="<%=@previous_answer%>"/>
           </form>
           <h1>Incorrect! The correct answer is '<%=@card.answer%>'</h1>
         <% end %>
@@ -22,14 +22,17 @@
         <% if answered_correctly(@round.id,@card.id) %>
           <h1> Answer: </h1>
           <form action="/rounds/<%=@round.id%>/cards/<%=@card.id%>" method = "post">
-            <input type='text' name ='answer' value ="<%=@card.answer%>"/>
+            <input class="button" type='text' name ='answer' value ="<%=@card.answer%>"/>
           </form>
           <h1>Correct!</h1>
         <% else %>
           <h1> Answer: </h1>
           <form action="/rounds/<%=@round.id%>/cards/<%=@card.id%>" method = "post">
+            
             <input type='text' name ='answer'/>
+            
             <input type = 'submit' value = 'submit answer'/>
+          
           </form>
         <% end %>
       <% end %>
