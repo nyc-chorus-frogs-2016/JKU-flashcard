@@ -7,8 +7,12 @@ get '/decks/:id/cards/new' do
   erb :'cards/new'
 end
 
+#ZM: Naming convention :deck_id
+#ZM: The /new is incorrect. /decks/:deck_id/cards is correct
 post '/decks/:deckid/cards/new' do
   @deck = Deck.find_by(id: params[:deckid])
+  #ZM: name your params w/ name=card[question]
+  #ZM: changes this to @new_card = Card.new(params[:card])
   @new_card = Card.new(question: params[:question], answer: params[:answer], deck_id: params[:deckid])
 
   if @new_card.save
